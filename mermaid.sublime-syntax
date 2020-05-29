@@ -96,10 +96,15 @@ contexts:
         - match: $
           pop: true
 
-    - match: ^\s*(subgraph)\s+({{text}})$
+    - match: ^\s*(subgraph)\s+((\w+)?(\[)?(")?({{text}})(")?(\])?)$
       captures:
         1: keyword.type.begin.sub.graph.mermaid
-        2: string.text.sub.graph.mermaid
+        3: entity.name.sub.graph.mermaid
+        4: keyword.operator.begin.sub.graph.mermaid
+        5: punctuation.definition.string.begin.mermaid
+        6: string.text.sub.graph.mermaid
+        7: punctuation.definition.string.end.mermaid
+        8: keyword.operator.end.sub.graph.mermaid
       push:
         - meta_scope: meta.declaration.sub.graph.mermaid
         - include: main
