@@ -35,13 +35,13 @@ contexts:
     - include: graph
 
   graph:
-    - match: ^\s*(class)\s+{{entity}}\s+
+    - match: ^\s*(class)\s+{{entity_multiple}}\s+
       captures:
         1: keyword.type.styling.graph.mermaid
       push:
-        - meta_scope: meta.declaration.styling.graph.mermaid
+        - meta_scope: entity.name.node.graph.mermaid
         - match: \b\w+\b
-          scope: support.name.styling.graph.mermaid
+          scope: entity.name.styling.graph.mermaid
         - match: $
           pop: true
 
