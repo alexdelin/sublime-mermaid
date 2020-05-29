@@ -9,6 +9,7 @@ scope: source.mermaid
 variables:
   graph_link: (?:-?-(?:-|\>)|=?=(?:=|\>)|(?:\.-|-\.)-?\>?)
   entity: \b[-\w]+\b
+  entity_multiple: \b[-\w,]+\b
   entity_from: \b{{entity}}\s?
   entity_to: \s?{{entity}}\b
   text: \b[-\w\s]+\b
@@ -54,7 +55,7 @@ contexts:
         - match: $
           pop: true
 
-    - match: ^\s*(linkStyle)\s+({{entity}})\s+
+    - match: ^\s*(linkStyle)\s+({{entity_multiple}})\s+
       captures:
         1: keyword.type.styling.graph.mermaid
         2: constant.numeric.integer.mermaid
@@ -78,9 +79,9 @@ contexts:
       captures:
         1: keyword.type.interaction.graph.mermaid
       push:
-        - meta_scope: meta.declaration.interaction.graph.mermaid
+        - meta_scope: entity.name.node.graph.mermaid
         - match: \b\w+\b
-          scope: entity.name.callback.interaction.graph.mermaid
+          scope: variable.function.callback.interaction.graph.mermaid
         - include: quoted_string
         - match: $
           pop: true
