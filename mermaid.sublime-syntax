@@ -121,14 +121,14 @@ contexts:
         - match: '{{entity_to}}'
           pop: true
 
-    - match: ^\s*({{entity}})(\[|\(+|\>|\{)
+    - match: ^\s*({{entity}})(\[\(|\(\[|\[\\|\[\/|\[{1,2}|\({1,2}|\>|\{{1,2})
       captures:
         1: entity.name.node.graph.mermaid
         2: keyword.operator.begin.node.graph.mermaid
       push:
         - meta_scope: meta.declaration.node.graph.mermaid
         - meta_content_scope: string.text.node.graph.mermaid
-        - match: (\]|\)+|\})(\b|\s|$)
+        - match: (\]\)|\)\]|\\\]|\/\]|\]{1,2}|\){1,2}|\}{1,2})(\b|\s|$)
           captures:
             1: keyword.operator.end.node.graph.mermaid
           pop: true
